@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -15,18 +16,8 @@ public class Main {
     private static void readInputAndPrintResult() {
         List<Integer> numbers = readIntegerList(new Scanner(System.in));
 
-        Function<List<Integer>, Integer> function = integerList -> {
-            int minNumber = Integer.MAX_VALUE;
-            int minNumberIndex = -1;
-
-            for (int index = 0; index < numbers.size(); index++) {
-                if (numbers.get(index) <= minNumber) {
-                    minNumber = numbers.get(index);
-                    minNumberIndex = index;
-                }
-            }
-            return minNumberIndex;
-        };
+        Function<List<Integer>, Integer> function = integerList ->
+                integerList.lastIndexOf(Collections.min(integerList));
 
         System.out.println(function.apply(numbers));
     }
