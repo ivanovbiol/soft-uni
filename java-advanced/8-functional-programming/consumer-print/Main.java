@@ -1,6 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -11,10 +11,9 @@ public class Main {
     }
 
     private static void readInputAndPrintResult() {
-        Consumer<String> stringConsumer = System.out::println;
+        Consumer<String[]> stringConsumer =
+                arr -> Arrays.stream(arr).forEach(System.out::println);
 
-        Stream
-                .of(new Scanner(System.in).nextLine().split(SPACE_DELIMITER))
-                .forEach(stringConsumer);
+        stringConsumer.accept(new Scanner(System.in).nextLine().split(SPACE_DELIMITER));
     }
 }
