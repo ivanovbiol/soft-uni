@@ -7,8 +7,6 @@ public class Person {
     private String name;
     private int age;
 
-    // The Person class is defined in Main class, so the constructor can be private
-    // Actually all Person methods can be private
     public Person(String name, int age) {
         this.setName(name);
         this.setAge(age);
