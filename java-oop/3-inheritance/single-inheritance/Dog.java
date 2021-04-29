@@ -6,7 +6,7 @@ public class Dog extends Animal {
     }
 
     @Override
-    protected void eat() {
+    public void eat() {
         super.eat();
     }
 
