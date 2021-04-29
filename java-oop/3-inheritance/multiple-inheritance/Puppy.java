@@ -5,6 +5,16 @@ public class Puppy extends Dog {
     public Puppy() {
     }
 
+    @Override
+    public void eat() {
+        super.eat();
+    }
+
+    @Override
+    public void bark() {
+        super.bark();
+    }
+
     public void weep() {
         System.out.println(WEEPING_MESSAGE);
     }

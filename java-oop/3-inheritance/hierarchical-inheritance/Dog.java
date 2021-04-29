@@ -2,12 +2,15 @@ public class Dog extends Animal {
 
     private static final String EATING_MESSAGE = "barking…";
 
+    public Dog() {
+    }
+
     @Override
-    protected void eat() {
+    public void eat() {
         super.eat();
     }
 
-    protected void bark() {
+    public void bark() {
         System.out.println(EATING_MESSAGE);
     }
 }
