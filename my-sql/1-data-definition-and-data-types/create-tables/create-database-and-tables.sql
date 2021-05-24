@@ -9,5 +9,5 @@ CREATE TABLE `employees` (
 CREATE TABLE `products` (
 	`id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(33) NOT NULL
-);DROP DATABASE temporary;
+);
 
