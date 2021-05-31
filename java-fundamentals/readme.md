@@ -2,7 +2,7 @@ Tasks from Java Fundamentals module
 
 Notes:
 
-- The task are grouped in folders which represent the different examined/learned topics during my training 
+- Each examined/learned topic has it's own folder in which the different tasks are grouped in individual folders
 
 - The tasks from Java fundamentals module will be solved only in one Main class with additional private methods
 
