@@ -97,7 +97,7 @@ WHERE
     
 -- First we need to create the geography database from geography.sql file
 
--- Task 10.	Countries Holding 'A' 3 or More Times
+-- Task 10. Countries Holding 'A' 3 or More Times
 USE `geography`;
 
 SELECT 
@@ -109,7 +109,7 @@ WHERE
 ORDER BY 
 	`iso_code` ASC;
 
--- Task 11.	Mix of Peak and River Names
+-- Task 11. Mix of Peak and River Names
 SELECT 
     `peak_name`,
     `river_name`,
@@ -124,3 +124,42 @@ WHERE
     LOWER(RIGHT(`peak_name`, 1)) LIKE LOWER(LEFT(`river_name`, 1))
 ORDER BY 
 	`mix` ASC; 
+    
+-- First we need to create the diablo database from diablo.sql file
+
+-- Task 12. Games from 2011 and 2012 Year
+USE `diablo`;
+
+SELECT
+	`name`, 
+    DATE_FORMAT(`start`, '%Y-%m-%d') AS `start`
+FROM
+	`diablo`.`games`
+WHERE
+	YEAR(`start`) BETWEEN 2011 AND 2012
+ORDER BY
+	`start` ASC, `name` ASC
+LIMIT
+	50;
+	
+-- Task 13. User Email Providers
+SELECT 
+    `user_name`,
+    SUBSTRING(`email` FROM LOCATE('@', `email`, 1) + 1) AS `Email Provider`
+FROM
+    `diablo`.`users`
+ORDER BY 
+	`Email Provider` ASC , `user_name` ASC;
+
+-- Task 14. Get Users with IP Address Like Pattern
+SELECT 
+    `user_name`, `ip_address`
+FROM
+    `diablo`.`users`
+WHERE
+	`ip_address` LIKE '___.1%.%.___'
+ORDER BY
+	`user_name` ASC;
+    
+-- Task 15. Show All Games with Duration and Part of the Day
+
