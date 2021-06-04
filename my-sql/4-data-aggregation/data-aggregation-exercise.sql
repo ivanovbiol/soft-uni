@@ -195,7 +195,36 @@ HAVING
 ORDER BY
 	`Department ID`;
 
+-- Task 15. Employees Count Salaries
+SELECT
+	COUNT(*) AS `Employees Without Manager`
+FROM
+	`soft_uni`.`employees`
+WHERE
+	`manager_id` IS NULL;
 
+-- Task 16. 3rd Highest Salary ***
+SELECT 
+    outher_empl.`department_id` AS `Department ID`,
+    (
+		SELECT DISTINCT
+            inner_empl.`salary`
+        FROM
+            `employees` AS inner_empl
+        WHERE
+            inner_empl.`department_id` = outher_empl.`department_id`
+        ORDER BY 
+        inner_empl.`salary` DESC
+        LIMIT 1 OFFSET 2
+	) AS `Third Highest Salary`
+FROM
+    `soft_uni`.`employees` AS outher_empl
+GROUP BY 
+	`Department ID`
+HAVING
+	`Third Highest Salary` IS NOT NULL
+ORDER BY
+	`Department ID` ASC;
 
 
 
