@@ -1,4 +1,4 @@
--- First we need to create the soft_uni database from booklibrary.sql file
+-- First we need to create the soft_uni database from soft-uni.sql file
 
 -- Task 1. Find Names of All Employees by First Name
 USE `soft_uni`;
@@ -162,4 +162,41 @@ ORDER BY
 	`user_name` ASC;
     
 -- Task 15. Show All Games with Duration and Part of the Day
+SELECT
+	`name` AS `Game`,
+    (
+		CASE
+			WHEN HOUR(`start`) BETWEEN 0 AND 11 THEN 'Morning'
+            WHEN HOUR(`start`) BETWEEN 12 AND 17 THEN 'Afternoon'
+            ELSE 'Evening'
+        END
+    ) AS `Part Of The Day`,
+    (
+		CASE
+			WHEN `duration` <= 3 THEN 'Extra Short'
+            WHEN `duration` > 3 AND `duration` <= 6 THEN 'Short'
+            WHEN `duration` > 6 AND `duration` <= 10 THEN 'Long'
+            WHEN `duration` > 10 THEN 'Extra Long'
+        END
+    ) AS `Duration`
+FROM
+	`diablo`.`games`
+WHERE
+	`start` IS NOT NULL AND `duration` IS NOT NULL
+ORDER BY
+	`id`;
+    
+-- First we need to create the orders database from orders.sql file
 
+-- Task 16. Orders Table
+SELECT
+	`product_name` AS `Product Name`,
+    `order_date` AS `Order Date`,
+    DATE_ADD(`order_date`, INTERVAL 3 DAY) AS `Pay Due`,
+    DATE_ADD(`order_date`, INTERVAL 1 MONTH) AS `Delivery Day`
+FROM
+	`orders`.`orders`
+WHERE
+	`order_date` IS NOT NULL
+ORDER BY
+	`id`;
