@@ -214,7 +214,7 @@ SELECT
         WHERE
             inner_empl.`department_id` = outher_empl.`department_id`
         ORDER BY 
-        inner_empl.`salary` DESC
+			inner_empl.`salary` DESC
         LIMIT 1 OFFSET 2
 	) AS `Third Highest Salary`
 FROM
@@ -226,16 +226,34 @@ HAVING
 ORDER BY
 	`Department ID` ASC;
 
+-- Task 17. Salary Challenge ***
+SELECT
+	outher_empl.`first_name` AS `First Name`,
+    outher_empl.`last_name` AS `Last Name`,
+    outher_empl.`department_id` AS `Department ID`
+FROM
+	`soft_uni`.`employees` AS outher_empl
+WHERE
+	outher_empl.`salary` > 
+(
+	SELECT
+		AVG(inner_empl.`salary`)
+	FROM
+		`soft_uni`.`employees` AS inner_empl
+	WHERE
+		inner_empl.`department_id` = outher_empl.`department_id`
+    )
+ORDER BY
+	`department_id`, `employee_id`
+LIMIT 10;
 
-
-
--- Comment
-
-
-
-
-
-
-
-
-
+-- Task 18. Departments Total Salaries
+SELECT
+	`department_id` AS `Department ID`,
+    SUM(`salary`) AS `Total Salary`
+FROM
+	`soft_uni`.`employees`
+GROUP BY
+	`department_id`
+ORDER BY
+	`department_id`;
