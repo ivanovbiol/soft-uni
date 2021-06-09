@@ -1,3 +1,5 @@
+-- First we need to create the soft-uni database from soft-uni-database.sql file
+
 -- Task 1. Managers
 USE `soft_uni`;
 
