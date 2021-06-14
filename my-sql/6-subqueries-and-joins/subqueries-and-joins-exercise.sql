@@ -270,8 +270,46 @@ ORDER BY
 	c.`country_name` ASC
 LIMIT 5;
     
--- Task 15. Continents and Currencies ***
-
-
+-- Task 16. Countries Without Any Mountains
+SELECT
+	COUNT(*) AS `Country Count`
+FROM
+	`geography`.`countries` AS c
+WHERE
+	c.`country_code` NOT IN
+	(SELECT `country_code` FROM `geography`.`mountains_countries`);
     
-    
+-- Task 17. Highest Peak and Longest River by Country ***
+SELECT
+	c.`country_name` AS `Country Name`,
+    MAX(p.`elevation`) AS `Highest Peak Elevation`,
+	MAX(r.`length`) AS `Longest River Length`
+FROM
+	`geography`.`countries` as c
+LEFT JOIN  
+	`geography`.`mountains_countries` AS mc
+ON 
+	c.`country_code` = mc.`country_code`
+LEFT JOIN
+	`geography`.`mountains` AS m
+ON
+	mc.`mountain_id` = m.`id`
+LEFT JOIN
+	`geography`.`peaks` AS p
+ON
+	m.`id` = p.`mountain_id`
+LEFT JOIN
+	`geography`.`countries_rivers` AS cr
+ON
+	c.`country_code` = cr.`country_code`
+LEFT JOIN
+	`geography`.`rivers` AS r
+ON
+	cr.`river_id` = r.`id`
+GROUP BY
+	`Country Name`
+ORDER BY
+	`Highest Peak Elevation` DESC, 
+    `Longest River Length` DESC,
+    `Country Name` ASC
+LIMIT 5;
